@@ -1,0 +1,217 @@
+[
+    {
+        "id": 1,
+        "generic": "Tacrolimus",
+        "brand": "Prograf",
+        "dosageOptions": ["Capsule", "Extended Release Capsule", "Extended Release Tablet", "Liquid Suspension", "Granules"],
+        "dosageAmount": "",
+        "schedule": {
+            "Morning": "",
+            "Afternoon": "",
+            "Evening": "",
+            "Bedtime": ""
+        },
+        "sideEffects": [
+            "Decreased magnesium levels",
+            "Increased potassium levels",
+            "Increased blood sugar",
+            "Increased blood pressure",
+            "Kidney damage",
+            "Tremors",
+            "Nausea",
+            "Diarrhea",
+            "Headache",
+            "Seizures",
+            "Leg cramps",
+            "Hair loss",
+            "Insomnia"
+        ]
+    },
+    {
+        "id": 2,
+        "generic": "Mycophenolate mofetil",
+        "brand": "CellCept",
+        "dosageOptions": ["Capsule", "Tablet", "Liquid Suspension"],
+        "dosageAmount": "",
+        "schedule": {
+            "Morning": "",
+            "Afternoon": "",
+            "Evening": "",
+            "Bedtime": ""
+        },
+        "sideEffects": [
+            "Nausea",
+            "Heartburn",
+            "Vomiting",
+            "Diarrhea",
+            "Abdominal pain",
+            "Headache",
+            "Fatigue",
+            "Low WBC count",
+            "Low RBC count",
+            "Low platelet count"
+        ]
+    },
+    {
+        "id": 3,
+        "generic": "Prednisone/Prednisolone",
+        "brand": "Deltasone",
+        "dosageOptions": ["Tablet", "Liquid Suspension"],
+        "dosageAmount": "",
+        "schedule": {
+            "Morning": "",
+            "Afternoon": "",
+            "Evening": "",
+            "Bedtime": ""
+        },
+        "sideEffects": [
+            "Increased blood pressure",
+            "Increased blood sugar",
+            "Vomiting",
+            "Diarrhea",
+            "Increased appetite",
+            "Weight gain",
+            "Edema",
+            "Mood swings",
+            "Irritability",
+            "Insomnia",
+            "Increased sweating",
+            "Acne",
+            "Slow wound healing",
+            "Stretch marks"
+        ],
+        "longTermEffects": [
+            "Weaker bones",
+            "Slower growth",
+            "Cataracts",
+            "Glaucoma"
+        ]
+    },
+    {
+        "id": 4,
+        "generic": "Cyclosporine",
+        "brand": "Neoral",
+        "dosageOptions": ["Capsule", "Liquid Solution"],
+        "dosageAmount": "",
+        "schedule": {
+            "Morning": "",
+            "Afternoon": "",
+            "Evening": "",
+            "Bedtime": ""
+        },
+        "sideEffects": [
+            "Decreased magnesium levels",
+            "Increased potassium levels",
+            "Increased blood sugar",
+            "Increased blood pressure",
+            "Kidney damage",
+            "Headache",
+            "Tremors",
+            "Nausea",
+            "Diarrhea",
+            "Vomiting",
+            "Increased body hair growth",
+            "Tender or swollen gums"
+        ]
+    },
+    {
+        "id": 5,
+        "generic": "Sirolimus",
+        "brand": "Rapamune",
+        "dosageOptions": ["Tablet", "Oral Solution"],
+        "dosageAmount": "",
+        "schedule": {
+            "Morning": "",
+            "Afternoon": "",
+            "Evening": "",
+            "Bedtime": ""
+        },
+        "sideEffects": [
+            "Nausea",
+            "Vomiting",
+            "Diarrhea",
+            "Headache",
+            "Low WBC count",
+            "Low RBC count",
+            "Low platelet count", 
+            "Fatigue",
+            "Mouth sores",
+            "Increased blood pressure",
+            "Slow wound healing",
+            "Acne",
+            "Increased protein in urine",
+            "Swelling",
+            "Increase in liver functions tests",
+            "Leg cramps",
+            "Lung inflammation"
+        ]
+    },
+    {
+        "id": 6,
+        "generic": "Trimethoprim/Sulfamethoxazole (TMP/SMX)",
+        "brand": "Bactrim/Septra",
+        "dosageOptions": ["Tablet", "Liquid Suspension"],
+        "dosageAmount": "",
+        "schedule": {
+            "Morning": "",
+            "Afternoon": "",
+            "Evening": "",
+            "Bedtime": ""
+        },
+        "sideEffects": [
+            "Nausea",
+            "Vomiting",
+            "Diarrhea",
+            "Rash",
+            "Increased sun sensitivity",
+            "Low WBC count",
+            "Low RBC count",
+            "Low platelet count",
+            "Fatigue",
+            "Increased potassium levels"
+        ]
+    },
+    {
+        "id" : 7,
+        "generic": "Nystatin",
+        "brand": "Mycostatin",
+        "dosageOptions": ["Liquid Suspension"],
+        "dosageAmount": "",
+        "schedule": {
+            "Morning": "",
+            "Afternoon": "",
+            "Evening": "",
+            "Bedtime": ""
+        },
+        "sideEffects": [
+            "Nausea",
+            "Vomiting",
+            "Diarrhea",
+            "Cavities",
+            "Metallic taste"
+        ]
+    },
+    {
+        "id": 8,
+        "generic": "Valganciclovir",
+        "brand": "Valcyte",
+        "dosageOptions": ["Tablet", "Liquid Suspension"],
+        "dosageAmount": "",
+        "schedule": {
+            "Morning": "",
+            "Afternoon": "",
+            "Evening": "",
+            "Bedtime": ""
+        },
+        "sideEffects": [
+            "Low WBC count",
+            "Low RBC count",
+            "Low platelet count",
+            "Reduced kidney function",
+            "Nausea",
+            "Vomiting",
+            "Diarrhea",
+            "Headache"
+        ]
+    }
+]
