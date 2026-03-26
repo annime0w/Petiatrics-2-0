@@ -1,0 +1,18 @@
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "strict": true,
+    "paths": {
+      "@/*": [
+        "./*"
+      ]
+    },
+    "jsx": "preserve" //it wouldn't work on my end without this
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    ".expo/types/**/*.ts",
+    "expo-env.d.ts"
+, "assets/fonts.js", "app/infoPageItems/addMedModal.js", "app/infoPageItems/editMedModal.js", "app/gamesPageItems/matchGame.js"  ]
+}
