@@ -28,6 +28,13 @@ export default function Tab() {
               </Pressable>
             </Link>
         </TouchableOpacity>
+        <TouchableOpacity onPress={() => router.push({ pathname: '../gamesPageItems/qaGame'})}>
+          <View style={localStyles.qaContainer}>
+            <Text style={localStyles.qaTitle}>Q&A</Text>
+            <Text style={localStyles.qaSubtitle}>Medication Quiz</Text>
+            <Text style={localStyles.qaDesc}>Test your knowledge and earn coins!</Text>
+          </View>
+        </TouchableOpacity>
         <TouchableOpacity >
           <ImageBackground
             source={require('../../assets/images/Containers/sortCont.png')}
@@ -63,5 +70,35 @@ const localStyles = StyleSheet.create({
     paddingLeft: 10,
     paddingRight: 10,
     margin: 9,
+  },
+  qaContainer: {
+    width: 330,
+    height: 210,
+    alignSelf: 'center',
+    borderRadius: 16,
+    backgroundColor: '#2E6DA4',
+    justifyContent: 'center',
+    alignItems: 'center',
+    margin: 9,
+    borderWidth: 3,
+    borderColor: '#7CB5DD',
+  },
+  qaTitle: {
+    fontSize: 42,
+    fontFamily: 'pixelRegular',
+    color: '#fff',
+    marginBottom: 4,
+  },
+  qaSubtitle: {
+    fontSize: 16,
+    fontFamily: 'pixelRegular',
+    color: '#7CB5DD',
+    marginBottom: 6,
+  },
+  qaDesc: {
+    fontSize: 12,
+    color: '#c8e6f5',
+    textAlign: 'center',
+    paddingHorizontal: 20,
   },
 });

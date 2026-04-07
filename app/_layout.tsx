@@ -5,7 +5,7 @@ import { SQLiteProvider, openDatabaseSync } from 'expo-sqlite';
 import { drizzle } from 'drizzle-orm/expo-sqlite';
 import { useMigrations } from 'drizzle-orm/expo-sqlite/migrator';
 import migrations from '@/drizzle/migrations';
-import { addMedData } from "@/db/medData";
+import { addMedData, addQuestionData } from "@/db/medData";
 import { UserProvider } from '@/context/UserContext';
 
 export const DATABASE_NAME = 'medicationInfo'
@@ -20,6 +20,7 @@ export function MigrationWrapper() {
     console.log('useEffect ran, success:', success, 'error:', error);
     if (success) {
       addMedData(db);
+      addQuestionData(db);
       console.log('Migrations successful');
     }
     if (error) {
@@ -36,6 +37,8 @@ export function MigrationWrapper() {
           <Stack.Screen name="infoPageItems/[id]" options={{ headerShown: false }} />
           <Stack.Screen name="gamesPageItems/matchGamePlay" options={{headerShown: false}}/>
           <Stack.Screen name="gamesPageItems/unscramble_game_final" options={{headerShown: false}}/>
+          <Stack.Screen name="gamesPageItems/qaGame" options={{headerShown: false}}/>
+          <Stack.Screen name="infoPageItems/AdminQuestions" options={{headerShown: false}}/>
         </Stack>
       </Suspense>
     </UserProvider>

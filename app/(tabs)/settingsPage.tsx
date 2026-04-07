@@ -1,10 +1,12 @@
 import { View, Text, StyleSheet, TouchableOpacity, ImageBackground } from 'react-native';
+import { useRouter } from 'expo-router';
 
 import { styles } from '@/styles/auth.styles';
 
 import React, { useState, useEffect } from 'react';
 
 export default function Settings() {
+  const router = useRouter();
   const [soundState, setSoundState] = useState(true);
   const [musicState, setMusicState] = useState(true);
   const [vibrationState, setVibrationState] = useState(true);
@@ -62,6 +64,12 @@ export default function Settings() {
           </TouchableOpacity>
         </ImageBackground>
       </View>
+      <TouchableOpacity 
+        style={{ backgroundColor: '#2E6DA4', padding: 14, borderRadius: 10, margin: 16, alignItems: 'center' }}
+        onPress={() => router.push('../infoPageItems/AdminQuestions')}
+      >
+        <Text style={{ color: '#fff', fontFamily: 'pixelRegular', fontSize: 16 }}>Admin: Question Bank</Text>
+      </TouchableOpacity>
     </View>
   );
 }

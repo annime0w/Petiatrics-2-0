@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { drizzle } from 'drizzle-orm/expo-sqlite'; 
+import { drizzle } from 'drizzle-orm/expo-sqlite';
+import { eq } from 'drizzle-orm';
 import { useSQLiteContext } from 'expo-sqlite';
 import * as schema from '@/db/schema'; 
 import { ActivityIndicator } from 'react-native'; 
@@ -12,6 +13,8 @@ type User = {
   coins: number;
   activeCatColorId: number;
   activeCatHatId: number;
+  ageGroup?: string | null;
+  consentGiven?: boolean | null;
 };
 
 type UserContextType = {
