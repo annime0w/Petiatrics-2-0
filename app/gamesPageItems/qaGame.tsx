@@ -6,7 +6,6 @@ import { drizzle } from 'drizzle-orm/expo-sqlite';
 import { eq } from 'drizzle-orm';
 import * as schema from '@/db/schema';
 import { useUser } from '@/context/UserContext';
-import ConsentScreen from './qaGameItems/ConsentScreen';
 import { buildSessionQuestions, startSession, awardCoins } from './qaGameItems/QuizEngine';
 import type { QuestionRow } from './qaGameItems/QuizEngine';
 import SessionSummary from './qaGameItems/SessionSummary';
@@ -14,7 +13,7 @@ import LabAssistantGame from './qaGameItems/ui1113/LabAssistantGame';
 import MissionBriefingGame from './qaGameItems/ui1416/MissionBriefingGame';
 import MedDashboardGame from './qaGameItems/ui1721/MedDashboardGame';
 
-type GameState = 'loading' | 'age_setup' | 'consent' | 'building_session' | 'playing' | 'summary' | 'no_questions' | 'error';
+type GameState = 'loading' | 'age_setup' | 'building_session' | 'playing' | 'summary' | 'no_questions' | 'error';
 
 export default function QAGame() {
   const router = useRouter();
@@ -48,12 +47,6 @@ export default function QAGame() {
         return;
       }
 
-      // Check consent
-      if (!freshUser.consentGiven) {
-        setGameState('consent');
-        return;
-      }
-
       // Build session
       setGameState('building_session');
       await buildSession(freshUser.ageGroup, freshUser.id);
@@ -84,22 +77,8 @@ export default function QAGame() {
     if (!user) return;
     await db.update(schema.users).set({ ageGroup }).where(eq(schema.users.id, user.id));
     updateUser({ ...user, ageGroup });
-    // Check consent next
-    const freshUser = await db.select().from(schema.users).where(eq(schema.users.id, user.id)).get();
-    if (!freshUser?.consentGiven) {
-      setGameState('consent');
-    } else {
-      setGameState('building_session');
-      await buildSession(ageGroup, user.id);
-    }
-  };
-
-  const handleConsented = async () => {
-    if (!user) return;
-    const freshUser = await db.select().from(schema.users).where(eq(schema.users.id, user.id)).get();
-    updateUser({ ...user, consentGiven: true });
     setGameState('building_session');
-    await buildSession(freshUser?.ageGroup ?? '14-16', user.id);
+    await buildSession(ageGroup, user.id);
   };
 
   const handleSessionComplete = async (correct: number, total: number) => {
@@ -180,16 +159,6 @@ export default function QAGame() {
           </TouchableOpacity>
         ))}
       </View>
-    );
-  }
-
-  if (gameState === 'consent') {
-    return (
-      <ConsentScreen
-        userId={user!.id}
-        ageGroup={user!.ageGroup ?? '14-16'}
-        onConsented={handleConsented}
-      />
     );
   }
 

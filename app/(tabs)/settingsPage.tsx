@@ -65,7 +65,13 @@ export default function Settings() {
         </ImageBackground>
       </View>
       <TouchableOpacity 
-        style={{ backgroundColor: '#2E6DA4', padding: 14, borderRadius: 10, margin: 16, alignItems: 'center' }}
+        style={{ backgroundColor: '#2E6DA4', padding: 14, borderRadius: 10, marginHorizontal: 16, marginTop: 16, alignItems: 'center' }}
+        onPress={() => router.push('../settingsPageItems/ConsentPage')}
+      >
+        <Text style={{ color: '#fff', fontFamily: 'pixelRegular', fontSize: 16 }}>Parental Consent Form</Text>
+      </TouchableOpacity>
+      <TouchableOpacity 
+        style={{ backgroundColor: '#4a4a6a', padding: 14, borderRadius: 10, margin: 16, alignItems: 'center' }}
         onPress={() => router.push('../infoPageItems/AdminQuestions')}
       >
         <Text style={{ color: '#fff', fontFamily: 'pixelRegular', fontSize: 16 }}>Admin: Question Bank</Text>

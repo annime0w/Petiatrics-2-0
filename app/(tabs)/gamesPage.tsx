@@ -29,11 +29,20 @@ export default function Tab() {
             </Link>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => router.push({ pathname: '../gamesPageItems/qaGame'})}>
-          <View style={localStyles.qaContainer}>
-            <Text style={localStyles.qaTitle}>Q&A</Text>
-            <Text style={localStyles.qaSubtitle}>Medication Quiz</Text>
-            <Text style={localStyles.qaDesc}>Test your knowledge and earn coins!</Text>
-          </View>
+          <ImageBackground
+            source={require('../../assets/images/Containers/squareCont.png')}
+            style={localStyles.container}
+          >
+            <View style={localStyles.qaInner}>
+              <Text style={localStyles.qaTitle}>Q&A</Text>
+              <View style={localStyles.qaSymbols}>
+                <View style={localStyles.qaChip}><Text style={localStyles.qaChipText}>?</Text></View>
+                <View style={localStyles.qaChip}><Text style={localStyles.qaChipText}>!</Text></View>
+                <View style={localStyles.qaChip}><Text style={localStyles.qaChipText}>✓</Text></View>
+              </View>
+              <Text style={localStyles.qaSubtitle}>MEDICATION QUIZ</Text>
+            </View>
+          </ImageBackground>
         </TouchableOpacity>
         <TouchableOpacity >
           <ImageBackground
@@ -71,34 +80,42 @@ const localStyles = StyleSheet.create({
     paddingRight: 10,
     margin: 9,
   },
-  qaContainer: {
-    width: 330,
-    height: 210,
-    alignSelf: 'center',
-    borderRadius: 16,
-    backgroundColor: '#2E6DA4',
+  qaInner: {
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    margin: 9,
-    borderWidth: 3,
-    borderColor: '#7CB5DD',
   },
   qaTitle: {
-    fontSize: 42,
+    fontSize: 52,
     fontFamily: 'pixelRegular',
-    color: '#fff',
-    marginBottom: 4,
+    color: '#1a1a2e',
+    marginBottom: 10,
+    letterSpacing: 2,
+  },
+  qaSymbols: {
+    flexDirection: 'row',
+    gap: 10,
+    marginBottom: 10,
+  },
+  qaChip: {
+    width: 48,
+    height: 48,
+    backgroundColor: '#f5a623',
+    borderRadius: 6,
+    borderWidth: 3,
+    borderColor: '#1a1a2e',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  qaChipText: {
+    fontFamily: 'pixelRegular',
+    fontSize: 22,
+    color: '#1a1a2e',
+    fontWeight: 'bold',
   },
   qaSubtitle: {
-    fontSize: 16,
+    fontSize: 14,
     fontFamily: 'pixelRegular',
-    color: '#7CB5DD',
-    marginBottom: 6,
-  },
-  qaDesc: {
-    fontSize: 12,
-    color: '#c8e6f5',
-    textAlign: 'center',
-    paddingHorizontal: 20,
+    color: '#2E6DA4',
   },
 });

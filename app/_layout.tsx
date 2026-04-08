@@ -50,6 +50,7 @@ export function MigrationWrapper() {
           <Stack.Screen name="gamesPageItems/unscramble_game_final" options={{headerShown: false}}/>
           <Stack.Screen name="gamesPageItems/qaGame" options={{headerShown: false}}/>
           <Stack.Screen name="infoPageItems/AdminQuestions" options={{headerShown: false}}/>
+          <Stack.Screen name="settingsPageItems/ConsentPage" options={{headerShown: false}}/>
         </Stack>
       </Suspense>
     </UserProvider>
