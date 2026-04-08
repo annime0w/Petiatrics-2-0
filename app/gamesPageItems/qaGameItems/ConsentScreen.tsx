@@ -240,7 +240,7 @@ export default function ConsentScreen({
       const signatureData = buildSVGPath(strokes);
       const signedAt = new Date().toISOString();
 
-      await db.insert(schema.consent_records).values({
+      await db.insert(schema.consentRecords).values({
         userId,
         signedByName: printedName.trim(),
         relationshipToPatient: isParental ? relationship.trim() : null,

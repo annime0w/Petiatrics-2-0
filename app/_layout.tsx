@@ -19,9 +19,20 @@ export function MigrationWrapper() {
   useEffect(() => {
     console.log('useEffect ran, success:', success, 'error:', error);
     if (success) {
+      // Safety net: ensure Q&A tables exist even if migration partially failed
+      // (e.g. ALTER TABLE failed because columns already existed on device)
+      try { expoDb.execSync("ALTER TABLE users ADD COLUMN age_group TEXT;"); } catch (_) {}
+      try { expoDb.execSync("ALTER TABLE users ADD COLUMN consent_given INTEGER DEFAULT 0;"); } catch (_) {}
+      expoDb.execSync(`CREATE TABLE IF NOT EXISTS question_bank (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, question_text TEXT NOT NULL, question_type TEXT NOT NULL, options_json TEXT, correct_answer TEXT NOT NULL, medication_id INTEGER, age_group TEXT NOT NULL, category TEXT NOT NULL, is_active INTEGER DEFAULT 1, sort_order INTEGER DEFAULT 0, created_at TEXT)`);
+      expoDb.execSync(`CREATE TABLE IF NOT EXISTS consent_records (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, user_id INTEGER NOT NULL, signed_by_name TEXT NOT NULL, relationship_to_patient TEXT, signature_data TEXT NOT NULL, consent_version TEXT DEFAULT '1.0', is_self_consent INTEGER DEFAULT 0, signed_at TEXT NOT NULL)`);
+      expoDb.execSync(`CREATE TABLE IF NOT EXISTS game_sessions (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, user_id INTEGER NOT NULL, age_group TEXT NOT NULL, started_at TEXT NOT NULL, completed_at TEXT, total_questions INTEGER DEFAULT 0, correct_count INTEGER DEFAULT 0, nurse_notes TEXT, nurse_engagement_rating TEXT, caregiver_present INTEGER)`);
+      expoDb.execSync(`CREATE TABLE IF NOT EXISTS question_attempts (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, session_id INTEGER NOT NULL, question_id INTEGER NOT NULL, user_id INTEGER NOT NULL, selected_answer TEXT, is_correct INTEGER NOT NULL, attempted_at TEXT NOT NULL)`);
+      expoDb.execSync(`CREATE TABLE IF NOT EXISTS question_progress (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, user_id INTEGER NOT NULL, question_id INTEGER NOT NULL, correct_streak INTEGER DEFAULT 0, total_attempts INTEGER DEFAULT 0, graduated INTEGER DEFAULT 0, last_seen_at TEXT)`);
+      expoDb.execSync(`CREATE TABLE IF NOT EXISTS session_reports (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, session_id INTEGER NOT NULL, report_text TEXT NOT NULL, generated_at TEXT NOT NULL)`);
+      try { expoDb.execSync(`CREATE UNIQUE INDEX IF NOT EXISTS user_question_idx ON question_progress (user_id, question_id)`); } catch (_) {}
       addMedData(db);
       addQuestionData(db);
-      console.log('Migrations successful');
+      console.log('Migrations + table safety check complete');
     }
     if (error) {
       console.error('Migrations failed:', error);
