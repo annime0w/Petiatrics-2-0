@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, ActivityIndicator, ScrollView } from 'react-native';
 import { useRouter } from 'expo-router';
 import { useSQLiteContext } from 'expo-sqlite';
@@ -28,8 +28,11 @@ export default function QAGame() {
   const [coinsEarned, setCoinsEarned] = useState<number>(0);
   const [errorMsg, setErrorMsg] = useState<string>('');
 
+  // Only run initGame on first mount — NOT when user.coins updates after session end
+  const hasInitialized = useRef(false);
   useEffect(() => {
-    if (!user) return;
+    if (!user || hasInitialized.current) return;
+    hasInitialized.current = true;
     initGame();
   }, [user]);
 
@@ -41,8 +44,9 @@ export default function QAGame() {
       const freshUser = await db.select().from(schema.users).where(eq(schema.users.id, user.id)).get();
       if (!freshUser) { setGameState('error'); setErrorMsg('User not found.'); return; }
 
-      // Check age group first
-      if (!freshUser.ageGroup) {
+      // Check age group — must be a valid bracket, not a stale/invalid value
+      const validGroups = ['11-13', '14-16', '17-21'];
+      if (!freshUser.ageGroup || !validGroups.includes(freshUser.ageGroup)) {
         setGameState('age_setup');
         return;
       }
