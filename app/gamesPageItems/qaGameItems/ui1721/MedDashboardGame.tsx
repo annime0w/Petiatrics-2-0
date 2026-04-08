@@ -421,9 +421,15 @@ export default function MedDashboardGame({
     );
   }
 
-  const options: string[] = Array.isArray(question.options)
-    ? question.options
-    : JSON.parse(question.options as unknown as string);
+  // Parse MCQ options from optionsJson; synthesize True/False for TF questions
+  const options: string[] = question.questionType === 'tf'
+    ? ['True', 'False']
+    : (() => {
+        try {
+          const parsed = JSON.parse(question.optionsJson ?? '[]');
+          return Array.isArray(parsed) ? parsed : [];
+        } catch { return []; }
+      })();
 
   const categoryRaw: string = question.category ?? 'General';
   // Format category display label

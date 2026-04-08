@@ -149,27 +149,7 @@ export default function TabLayout() {
             />
             <Tabs.Screen
                 name="checkIns"
-                options={{
-                    title: '',
-                    tabBarIcon: ({ focused }) => (
-                        <ImageBackground
-                            source={require('../../assets/images/Tabs/settingsTab.png')}
-                            style={{ 
-                                width: 84, 
-                                height: 150, 
-                                justifyContent: 'center', 
-                                alignItems: 'center',
-                                marginTop: 45,
-                                transform: [{ translateY: focused ? 0 : 18 }] 
-                            }}>
-                        </ImageBackground>
-                    ),
-                    tabBarStyle: {
-                        position: 'absolute',
-                        height: 90,
-                        paddingTop: 0,
-                    },
-                }}
+                options={{ href: null }}
             />
         </Tabs>
     );

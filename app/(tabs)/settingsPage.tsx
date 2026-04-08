@@ -64,18 +64,18 @@ export default function Settings() {
           </TouchableOpacity>
         </ImageBackground>
       </View>
-      <TouchableOpacity 
-        style={{ backgroundColor: '#2E6DA4', padding: 14, borderRadius: 10, marginHorizontal: 16, marginTop: 16, alignItems: 'center' }}
-        onPress={() => router.push('../settingsPageItems/ConsentPage')}
-      >
-        <Text style={{ color: '#fff', fontFamily: 'pixelRegular', fontSize: 16 }}>Parental Consent Form</Text>
-      </TouchableOpacity>
-      <TouchableOpacity 
-        style={{ backgroundColor: '#4a4a6a', padding: 14, borderRadius: 10, margin: 16, alignItems: 'center' }}
-        onPress={() => router.push('../infoPageItems/AdminQuestions')}
-      >
-        <Text style={{ color: '#fff', fontFamily: 'pixelRegular', fontSize: 16 }}>Admin: Question Bank</Text>
-      </TouchableOpacity>
+        <ImageBackground source={require('../../assets/images/Containers/contTest3.png')} style={localStyles.container}>
+          <TouchableOpacity onPress={() => router.push('../settingsPageItems/ConsentPage')} style={localStyles.textContainer}>
+            <Text style={[localStyles.button, localStyles.leftAlign]}>Consent</Text>
+            <Text style={[localStyles.button, localStyles.rightAlign]}>📋 </Text>
+          </TouchableOpacity>
+        </ImageBackground>
+        <ImageBackground source={require('../../assets/images/Containers/contTest3.png')} style={localStyles.container}>
+          <TouchableOpacity onPress={() => router.push('../infoPageItems/AdminQuestions')} style={localStyles.textContainer}>
+            <Text style={[localStyles.button, localStyles.leftAlign]}>Q Bank</Text>
+            <Text style={[localStyles.button, localStyles.rightAlign]}>✏️ </Text>
+          </TouchableOpacity>
+        </ImageBackground>
     </View>
   );
 }

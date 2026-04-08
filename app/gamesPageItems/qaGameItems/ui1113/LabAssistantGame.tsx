@@ -55,30 +55,19 @@ const FEEDBACK_DELAY_MS = 1500;
 // ---------------------------------------------------------------------------
 
 function isTrueFalseQuestion(question: QuestionRow): boolean {
-  const answers = parseAnswers(question);
-  return (
-    answers.length === 2 &&
-    answers.every(
-      (a) =>
-        a.toLowerCase() === 'true' ||
-        a.toLowerCase() === 'false'
-    )
-  );
+  return question.questionType === 'tf';
 }
 
 function parseAnswers(question: QuestionRow): string[] {
-  // answers stored as JSON array string or pipe-separated
+  // True/False questions have no stored options — synthesize them
+  if (question.questionType === 'tf') return ['True', 'False'];
+  // MCQ: options stored in optionsJson as a JSON array
   try {
-    const parsed = JSON.parse(question.answers as string);
+    const parsed = JSON.parse(question.optionsJson ?? '[]');
     if (Array.isArray(parsed)) return parsed;
   } catch {
     // fall through
   }
-  if (typeof question.answers === 'string' && question.answers.includes('|')) {
-    return question.answers.split('|').map((s) => s.trim());
-  }
-  // Already an array (drizzle may return it)
-  if (Array.isArray(question.answers)) return question.answers as string[];
   return [];
 }
 
